@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         List<User> userList = userPersistence.findAll();
-        return null;
+        return userList;
     }
 
     @Override
