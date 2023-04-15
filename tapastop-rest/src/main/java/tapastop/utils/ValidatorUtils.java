@@ -3,6 +3,11 @@ package tapastop.utils;
 import org.springframework.http.HttpStatus;
 import tapastop.exceptions.types.BadRequestException;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
+
 public class ValidatorUtils{
 
     private static <T> String stringValidator (T object, String field ){
@@ -44,18 +49,27 @@ public class ValidatorUtils{
         return str;
     }
 
-    private static <T> Double doubleValidator (T object, String field){
+    public static <T> Double doubleValidator (T object, String field){
         if(object == null || !(object.getClass().equals(Double.class))){
             throw new BadRequestException("400", "Double was expected in field: " + field, HttpStatus.BAD_REQUEST);
         }
         return (Double) object;
     }
 
-    /*
-    private static <T> Date dateValidator (T object, String field){
-
+    public static <T> Date dateValidator (T object, String field){
+        String str = stringValidator(object, field);
+        if(!str.matches(StrTypes.STR_DATE)){
+            throw new BadRequestException("400", "Date (xx/xx/xxxx was expected in field: " + str, HttpStatus.BAD_REQUEST);
+        }
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date date = formato.parse(str);
+            return date;
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
-*/
+
     public static <T> Double positiveDoubleValidator (T object, String field){
         Double dbl = doubleValidator(object, field);
         if(dbl < 0){

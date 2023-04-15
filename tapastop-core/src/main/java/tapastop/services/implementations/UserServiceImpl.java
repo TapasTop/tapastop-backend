@@ -18,8 +18,8 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    //@Autowired
-    //private EmailService emailService;
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     private UserPersistence userPersistence;
@@ -44,13 +44,10 @@ public class UserServiceImpl implements UserService {
         ConfirmationToken confirmationToken = new ConfirmationToken(user);
         confirmationTokenPersistence.save(confirmationToken);
 
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(user.getMail());
-        mailMessage.setSubject("Confirma tu registro");
-        mailMessage.setText("Su registro se ha realizado con éxito, ahora solo falta el último paso. Verifica tu " +
-                "cuenta en el siguiente enlace: http://localhost:8080/confirm-account?token?" +
+        emailService.sendEmail(user.getMail(), "Confirma tu registro",
+                "Su registro se ha realizado con éxito, ahora solo falta el último paso. Verifica tu " +
+                "cuenta en el siguiente enlace: http://localhost:8080/confirm-account?token=" +
                 confirmationToken.getConfirmationToken());
-        //emailService.sendEmail(mailMessage);
 
         return new ResponseEntity<>("Operation successfully", HttpStatus.OK);
     }

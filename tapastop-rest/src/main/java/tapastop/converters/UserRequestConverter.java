@@ -15,7 +15,7 @@ public class UserRequestConverter implements Converter<SaveUserRequest, User> {
                 ValidatorUtils.mailStringValidator(source.getMail(),  "\"mail\""),
                 ValidatorUtils.alphabeticStringValidator(source.getName(), "\"name\""),
                 ValidatorUtils.alphabeticStringValidator(source.getSurname(), "\"surname\""),
-                source.getBirthdate(),
+                ValidatorUtils.dateValidator(source.getBirthdate(), "\"birthdate\""),
                 source.getGender(),
                 source.getAddress()
                 );
