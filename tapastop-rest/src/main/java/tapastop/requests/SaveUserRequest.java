@@ -11,20 +11,20 @@ public class SaveUserRequest {
     private String mail;
     private String name;
     private String surname;
-    private Date birthdate;
+    private String birthdate;
     private String gender;
     private String address;
 
     public SaveUserRequest() {
     }
 
-    public SaveUserRequest(String username, String password, String mail, String name, String surname, String gender, String address) {
+    public SaveUserRequest(String username, String password, String mail, String name, String surname, String birthdate, String gender, String address) {
         this.username = username;
         this.password = password;
         this.mail = mail;
         this.name = name;
         this.surname = surname;
-        this.birthdate = new Date(System.currentTimeMillis());
+        this.birthdate = birthdate;
         this.gender = gender;
         this.address = address;
     }
@@ -69,11 +69,11 @@ public class SaveUserRequest {
         this.surname = surname;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 

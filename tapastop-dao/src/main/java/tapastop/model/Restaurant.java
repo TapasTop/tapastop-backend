@@ -74,4 +74,12 @@ public class Restaurant {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+
+    public Date getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(Date addedDate) {
+        this.addedDate = addedDate;
+    }
 }
