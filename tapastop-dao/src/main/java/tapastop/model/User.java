@@ -1,8 +1,10 @@
 package tapastop.model;
 
 import jakarta.persistence.*;
+import tapastop.utils.Gender;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user", schema = "tapastop")
@@ -43,6 +45,9 @@ public class User {
 
     @Column(name = "isEnabled")
     private Boolean isEnabled;
+
+    @OneToMany(mappedBy = "user")
+    private List<Rating> ratings;
 
     public User() {
     }

@@ -2,6 +2,7 @@ package tapastop.model;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "restaurant", schema = "tapastop")
 public class Restaurant {
