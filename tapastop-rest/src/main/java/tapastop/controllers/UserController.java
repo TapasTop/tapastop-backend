@@ -39,7 +39,7 @@ public class UserController {
     @DeleteMapping("/user/{id}")
     public ResponseEntity<String> deleteUserById(@PathVariable Long id){
         userService.deleteById(id);
-        return new ResponseEntity<>("Delete successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
     }
 
     @GetMapping("/user/mail/{mail}")
