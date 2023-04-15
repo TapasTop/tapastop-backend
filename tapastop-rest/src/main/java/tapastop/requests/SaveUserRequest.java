@@ -1,68 +1,32 @@
-package tapastop.model;
+package tapastop.requests;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "user", schema = "tapastop")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class SaveUserRequest {
 
-    @Column(name = "username")
     private String username;
-
-    @Column(name = "password")
     private String password;
-
-    @Column(name = "mail")
     private String mail;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "surname")
     private String surname;
-
-    @Column(name = "birthdate")
     private Date birthdate;
-
-    @Column(name = "gender")
     private String gender;
-
-    @Column(name = "address")
     private String address;
 
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "picture")
-    private String picture;
-
-    @Column(name = "isEnabled")
-    private Boolean isEnabled;
-
-    public User() {
+    public SaveUserRequest() {
     }
 
-    public User(String username, String password, String mail, String name, String surname, Date birthdate, String gender, String address) {
+    public SaveUserRequest(String username, String password, String mail, String name, String surname, String gender, String address) {
         this.username = username;
         this.password = password;
         this.mail = mail;
         this.name = name;
         this.surname = surname;
-        this.birthdate = birthdate;
+        this.birthdate = new Date(System.currentTimeMillis());
         this.gender = gender;
         this.address = address;
-        this.description = "";
-        this.picture = "https://lombreach.es/wp-content/uploads/usuario-sin-foto.png";
-        this.isEnabled = false;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getUsername() {
@@ -127,29 +91,5 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
-
-    public Boolean getEnabled() {
-        return isEnabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        isEnabled = enabled;
     }
 }
