@@ -2,6 +2,8 @@ package tapastop.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 
 @Entity
 @Table(name = "restaurant", schema = "tapastop")
@@ -23,6 +25,9 @@ public class Restaurant {
     @Column(name = "picture")
     private String picture;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date addedDate;
+
     public Restaurant() {
     }
 
@@ -31,6 +36,7 @@ public class Restaurant {
         this.address = address;
         this.description = description;
         this.picture = picture;
+        this.addedDate = new Date(System.currentTimeMillis());
     }
 
     public Long getId() {
