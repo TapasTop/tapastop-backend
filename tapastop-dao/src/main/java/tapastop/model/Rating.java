@@ -2,6 +2,8 @@ package tapastop.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "rating", schema = "tapastop")
 public class Rating {
@@ -20,6 +22,9 @@ public class Rating {
     @Column(name = "rate")
     private Integer rate;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date rateDate;
+
     public Rating() {
     }
 
@@ -27,6 +32,7 @@ public class Rating {
         this.user = user;
         this.tapa = tapa;
         this.rate = rate;
+        this.rateDate = new Date(System.currentTimeMillis());
     }
 
     public Long getId() {

@@ -4,7 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tapastop.converters.TapaRequestConverter;
+import tapastop.converters.TapaResponseConverter;
+import tapastop.converters.UserRequestConverter;
 import tapastop.model.Tapa;
+import tapastop.reponses.TapaResponse;
+import tapastop.requests.SaveTapaRequest;
 import tapastop.services.TapaService;
 
 import java.util.List;
@@ -16,20 +21,21 @@ public class TapaController {
     private TapaService tapaService;
 
     @GetMapping("/tapa")
-    public ResponseEntity<List<Tapa>> getAllTapas(){
-        ResponseEntity<List<Tapa>> responseEntity = new ResponseEntity<>(tapaService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<TapaResponse>> getAllTapas(){
+        ResponseEntity<List<TapaResponse>> responseEntity = new ResponseEntity<>(tapaService.findAll(), HttpStatus.OK);
         return responseEntity;
     }
 
     @GetMapping("/tapa/{id}")
-    public ResponseEntity<Tapa> getTapa(@PathVariable Long id){
-        ResponseEntity<Tapa> responseEntity = new ResponseEntity<>(tapaService.findById(id), HttpStatus.OK);
+    public ResponseEntity<TapaResponse> getTapa(@PathVariable Long id){
+        ResponseEntity<TapaResponse> responseEntity = new ResponseEntity<>(tapaService.findById(id), HttpStatus.OK);
         return responseEntity;
     }
 
     @PostMapping("/tapa")
-    public ResponseEntity<Tapa> saveTapa(@RequestBody Tapa Tapa){
-        ResponseEntity<Tapa> responseEntity = new ResponseEntity<>(tapaService.save(Tapa), HttpStatus.OK);
+    public ResponseEntity<TapaResponse> saveTapa(@RequestBody SaveTapaRequest tapa){
+        TapaRequestConverter tapaRequestConverter = new TapaRequestConverter();
+        ResponseEntity<TapaResponse> responseEntity = new ResponseEntity<>(tapaService.save(tapaRequestConverter.convert(tapa)), HttpStatus.OK);
         return responseEntity;
     }
 
