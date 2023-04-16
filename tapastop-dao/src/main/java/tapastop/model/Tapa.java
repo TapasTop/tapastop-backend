@@ -1,8 +1,10 @@
 package tapastop.model;
 
 import jakarta.persistence.*;
-import tapastop.utils.Taste;
+import org.hibernate.boot.model.source.spi.IdentifierSource;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,34 +21,48 @@ public class Tapa {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    @ManyToOne
-    @JoinColumn(name = "type_id")
-    private Type type;
+    @ManyToMany
+    @JoinTable(name = "tapa_type",
+            joinColumns = @JoinColumn(name = "tapa_id"),
+            inverseJoinColumns = @JoinColumn(name = "type_id")
+    )
+    private List<Type> types;
 
-    @ManyToOne
-    @JoinColumn(name = "region_id")
-    private Region region;
+    @ManyToMany
+    @JoinTable(name = "tapa_region",
+            joinColumns = @JoinColumn(name = "tapa_id"),
+            inverseJoinColumns = @JoinColumn(name = "region_id")
+    )
+    private List<Region> regions;
 
     @Column(name = "picture")
     private String picture;
 
     @Column(name = "taste")
-    private Taste taste;
+    private String taste;
 
     @OneToMany(mappedBy = "tapa")
     private List<Rating> ratings;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date addedDate;
+
+    @Column(name = "description")
+    private String description;
 
 
     public Tapa() {
     }
 
-    public Tapa(String name, Restaurant restaurant, Type type, Region region, String picture, Taste taste) {
+    public Tapa(String name, Restaurant restaurant, String picture, String taste, List<Type> types, List<Region> regions, String description) {
         this.name = name;
         this.restaurant = restaurant;
-        this.type = type;
-        this.region = region;
+        this.types = types;
         this.picture = picture;
         this.taste = taste;
+        this.regions = regions;
+        this.addedDate = new Date(System.currentTimeMillis());
+        this.description = description;
     }
 
     public Long getId() {
@@ -69,19 +85,55 @@ public class Tapa {
         this.restaurant = restaurant;
     }
 
-    public Type getType() {
-        return type;
+    public List<Type> getTypes() {
+        return types;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setTypes(List<Type> types) {
+        this.types = types;
     }
 
-    public Region getRegion() {
-        return region;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setRegion(Region region) {
-        this.region = region;
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public List<Region> getRegions() {
+        return regions;
+    }
+
+    public void setRegions(List<Region> regions) {
+        this.regions = regions;
+    }
+
+    public String getTaste() {
+        return taste;
+    }
+
+    public void setTaste(String taste) {
+        this.taste = taste;
+    }
+
+    public Date getAddedDate() {
+        return addedDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

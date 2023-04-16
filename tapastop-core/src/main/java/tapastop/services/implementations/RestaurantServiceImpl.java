@@ -8,6 +8,7 @@ import tapastop.model.User;
 import tapastop.persistence.RestaurantPersistence;
 import tapastop.services.RestaurantService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant save(Restaurant restaurant) {
+        restaurant.setAddedDate(new Date(System.currentTimeMillis()));
         Restaurant rest = restaurantPersistence.save(restaurant);
         return rest;
     }

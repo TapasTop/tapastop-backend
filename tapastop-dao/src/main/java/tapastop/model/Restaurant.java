@@ -31,12 +31,12 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(String name, String address, String description, String picture) {
+    public Restaurant(String name, String address, String description, String picture, Date addedDate) {
         this.name = name;
         this.address = address;
         this.description = description;
         this.picture = picture;
-        this.addedDate = new Date(System.currentTimeMillis());
+        this.addedDate = addedDate;
     }
 
     public Long getId() {

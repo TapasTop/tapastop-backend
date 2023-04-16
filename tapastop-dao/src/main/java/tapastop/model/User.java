@@ -49,6 +49,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Rating> ratings;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date regDate;
+
     public User() {
     }
 
@@ -64,6 +67,7 @@ public class User {
         this.description = "";
         this.picture = "https://lombreach.es/wp-content/uploads/usuario-sin-foto.png";
         this.isEnabled = false;
+        this.regDate = new Date(System.currentTimeMillis());
     }
 
     public Long getId() {
