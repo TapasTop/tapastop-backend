@@ -12,4 +12,5 @@ public interface UserService {
     public void deleteById(Long id);
     public User findByMail(String mail);
     public ResponseEntity<String> confirmEmail(String confirmationToken);
+    public User findByUsername(String username);
 }
