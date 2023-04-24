@@ -80,4 +80,12 @@ public class UserServiceImpl implements UserService {
         }
         return ResponseEntity.badRequest().body("Error: Couldn't verify the email");
     }
+
+    @Override
+    public User findByUsername(String username) {
+        Optional<User> user = this.userPersistence.findByUsername(username);
+        return user.get();
+    }
+
+
 }

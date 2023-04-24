@@ -43,4 +43,10 @@ public class UserPersistenceImpl implements UserPersistence {
         Optional<User> persisted = this.userDao.findUserByMail(mail);
         return persisted;
     }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        Optional<User> persisted = this.userDao.findUserByUsername(username);
+        return persisted;
+    }
 }

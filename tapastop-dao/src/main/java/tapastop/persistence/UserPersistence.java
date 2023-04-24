@@ -11,4 +11,5 @@ public interface UserPersistence {
     public List<User> findAll();
     public void deleteById(Long id);
     public Optional<User> findByMail(String mail);
+    public Optional<User> findByUsername(String username);
 }
