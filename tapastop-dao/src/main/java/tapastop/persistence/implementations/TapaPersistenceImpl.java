@@ -1,5 +1,8 @@
 package tapastop.persistence.implementations;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
@@ -13,6 +16,9 @@ import java.util.Optional;
 
 @Component
 public class TapaPersistenceImpl implements TapaPersistence {
+
+    @PersistenceContext
+    private EntityManager entityManager;
     @Autowired
     private TapaDao tapaDao;
 
@@ -37,5 +43,12 @@ public class TapaPersistenceImpl implements TapaPersistence {
     @Override
     public void deleteById(Long id) {
         tapaDao.deleteById(id);
+    }
+
+    @Override
+    public List<Tapa> findByTaste(String taste) {
+        TypedQuery<Tapa> query = entityManager.createQuery("SELECT t FROM Tapa t WHERE t.taste = :taste", Tapa.class);
+        query.setParameter("gusto", taste);
+        return query.getResultList();
     }
 }
