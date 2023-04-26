@@ -45,4 +45,15 @@ public class TapaController {
         ResponseEntity<String> responseEntity = new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
         return responseEntity;
     }
+
+    @GetMapping("/tapa/{taste}")
+    public ResponseEntity<List<TapaResponse>> findByTaste(@PathVariable String taste) {
+        List<TapaResponse> tapas = tapaService.findByTaste(taste);
+        if (!tapas.isEmpty()) {
+            return ResponseEntity.ok(tapas);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

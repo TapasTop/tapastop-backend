@@ -20,6 +20,7 @@ import tapastop.services.TapaService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TapaServiceImpl implements TapaService {
@@ -73,5 +74,14 @@ public class TapaServiceImpl implements TapaService {
     @Override
     public void deleteById(Long id) {
         tapaPersistence.deleteById(id);
+    }
+
+    @Override
+    public List<TapaResponse> findByTaste(String taste) {
+        TapaResponseConverter tapaResponseConverter = new TapaResponseConverter();
+        List<Tapa> tapas = tapaPersistence.findByTaste(taste);
+        return tapas.stream()
+                .map(tapaResponseConverter::convert)
+                .collect(Collectors.toList());
     }
 }
