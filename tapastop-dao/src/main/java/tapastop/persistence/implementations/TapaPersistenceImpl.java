@@ -47,8 +47,7 @@ public class TapaPersistenceImpl implements TapaPersistence {
 
     @Override
     public List<Tapa> findByTaste(String taste) {
-        TypedQuery<Tapa> query = entityManager.createQuery("SELECT t FROM Tapa t WHERE t.taste = :taste", Tapa.class);
-        query.setParameter("gusto", taste);
-        return query.getResultList();
+        List<Tapa> persisted = this.tapaDao.findByTaste(taste);
+        return persisted;
     }
 }

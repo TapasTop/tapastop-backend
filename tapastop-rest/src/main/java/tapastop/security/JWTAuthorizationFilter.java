@@ -28,13 +28,4 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
-/*
-    public static void main(String[] args) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String passwordEncriptada = encoder.encode("hola");
-        System.out.println("Contraseña encriptada: " + passwordEncriptada);
-    }
-
- */
-
 }
