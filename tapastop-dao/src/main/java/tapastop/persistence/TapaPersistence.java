@@ -12,5 +12,5 @@ public interface TapaPersistence {
     public Tapa save(Tapa tapa);
     public List<Tapa> findAll();
     public void deleteById(Long id);
-    public List<Tapa> findAllByUsers(User user);
+    public List<Tapa> getTapasByUsers(Long id);
 }

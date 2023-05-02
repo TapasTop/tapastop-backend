@@ -77,8 +77,8 @@ public class TapaServiceImpl implements TapaService {
     }
 
     @Override
-    public List<TapaResponse> findAllByUser(User user) {
-        List<Tapa> tapaList = tapaPersistence.findAllByUsers(user);
+    public List<TapaResponse> getTapasByUser(Long id) {
+        List<Tapa> tapaList = tapaPersistence.getTapasByUsers(id);
         List<TapaResponse> responseList = new ArrayList<>();
         TapaResponseConverter tapaResponseConverter = new TapaResponseConverter();
         for(Tapa tapa : tapaList){

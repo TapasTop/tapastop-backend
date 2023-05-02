@@ -1,10 +1,8 @@
 package tapastop.persistence.implementations;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import tapastop.dao.TapaDao;
-import tapastop.model.Tapa;
 import tapastop.model.Tapa;
 import tapastop.model.User;
 import tapastop.persistence.TapaPersistence;
@@ -41,8 +39,8 @@ public class TapaPersistenceImpl implements TapaPersistence {
     }
 
     @Override
-    public List<Tapa> findAllByUsers(User user) {
-        List<Tapa> persisted = tapaDao.findAllByUsers(user);
+    public List<Tapa> getTapasByUsers(Long id) {
+        List<Tapa> persisted = tapaDao.getTapasByUsers(id);
         return persisted;
     }
 }

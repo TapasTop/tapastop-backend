@@ -48,8 +48,8 @@ public class TapaController {
     }
 
     @GetMapping("/{user}/tapa")
-    public ResponseEntity<List<TapaResponse>> getTapasByUser(@RequestBody User user){
-        ResponseEntity<List<TapaResponse>> responseEntity = new ResponseEntity <>(tapaService.findAllByUser(user), HttpStatus.OK);
+    public ResponseEntity<List<TapaResponse>> getTapasByUser(@RequestParam Long user){
+        ResponseEntity<List<TapaResponse>> responseEntity = new ResponseEntity <>(tapaService.getTapasByUser(user), HttpStatus.OK);
         return responseEntity;
     }
 
