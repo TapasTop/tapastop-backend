@@ -8,6 +8,7 @@ import tapastop.converters.TapaRequestConverter;
 import tapastop.converters.TapaResponseConverter;
 import tapastop.converters.UserRequestConverter;
 import tapastop.model.Tapa;
+import tapastop.model.User;
 import tapastop.reponses.TapaResponse;
 import tapastop.requests.SaveTapaRequest;
 import tapastop.services.TapaService;
@@ -45,4 +46,11 @@ public class TapaController {
         ResponseEntity<String> responseEntity = new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
         return responseEntity;
     }
+
+    @GetMapping("/{user}/tapa")
+    public ResponseEntity<List<TapaResponse>> getTapasByUser(@RequestBody User user){
+        ResponseEntity<List<TapaResponse>> responseEntity = new ResponseEntity <>(tapaService.findAllByUser(user), HttpStatus.OK);
+        return responseEntity;
+    }
+
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import tapastop.dao.TapaDao;
 import tapastop.model.Tapa;
 import tapastop.model.Tapa;
+import tapastop.model.User;
 import tapastop.persistence.TapaPersistence;
 
 import java.util.List;
@@ -37,5 +38,11 @@ public class TapaPersistenceImpl implements TapaPersistence {
     @Override
     public void deleteById(Long id) {
         tapaDao.deleteById(id);
+    }
+
+    @Override
+    public List<Tapa> findAllByUsers(User user) {
+        List<Tapa> persisted = tapaDao.findAllByUsers(user);
+        return persisted;
     }
 }

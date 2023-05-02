@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tapastop.converters.UserRequestConverter;
 import tapastop.model.User;
+import tapastop.reponses.TapaResponse;
 import tapastop.requests.SaveUserRequest;
 import tapastop.services.UserService;
 
@@ -52,4 +53,6 @@ public class UserController {
     public ResponseEntity<String> confirmUserAccount(@RequestParam String token) {
         return userService.confirmEmail(token);
     }
+
+
 }

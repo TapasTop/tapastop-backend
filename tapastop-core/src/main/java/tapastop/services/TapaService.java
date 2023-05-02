@@ -1,6 +1,7 @@
 package tapastop.services;
 
 import tapastop.model.Tapa;
+import tapastop.model.User;
 import tapastop.reponses.TapaResponse;
 import tapastop.requests.TapaCoreRequest;
 
@@ -11,4 +12,5 @@ public interface TapaService {
     public TapaResponse save(TapaCoreRequest tapa);
     public List<TapaResponse> findAll();
     public void deleteById(Long id);
+    public List<TapaResponse> findAllByUser(User user);
 }

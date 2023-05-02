@@ -9,6 +9,7 @@ import tapastop.dao.TypeDao;
 import tapastop.model.Region;
 import tapastop.model.Tapa;
 import tapastop.model.Type;
+import tapastop.model.User;
 import tapastop.persistence.RegionPersistence;
 import tapastop.persistence.RestaurantPersistence;
 import tapastop.persistence.TapaPersistence;
@@ -73,5 +74,16 @@ public class TapaServiceImpl implements TapaService {
     @Override
     public void deleteById(Long id) {
         tapaPersistence.deleteById(id);
+    }
+
+    @Override
+    public List<TapaResponse> findAllByUser(User user) {
+        List<Tapa> tapaList = tapaPersistence.findAllByUsers(user);
+        List<TapaResponse> responseList = new ArrayList<>();
+        TapaResponseConverter tapaResponseConverter = new TapaResponseConverter();
+        for(Tapa tapa : tapaList){
+            responseList.add(tapaResponseConverter.convert(tapa));
+        }
+        return responseList;
     }
 }
