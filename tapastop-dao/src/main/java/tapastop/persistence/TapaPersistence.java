@@ -2,6 +2,7 @@ package tapastop.persistence;
 
 import tapastop.model.Restaurant;
 import tapastop.model.Tapa;
+import tapastop.model.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,4 +13,5 @@ public interface TapaPersistence {
     public List<Tapa> findAll();
     public void deleteById(Long id);
     public List<Tapa> findByTaste(String taste);
+    public List<Tapa> getTapasByUsers(Long id);
 }

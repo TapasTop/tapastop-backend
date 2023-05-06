@@ -8,6 +8,7 @@ import tapastop.converters.TapaRequestConverter;
 import tapastop.converters.TapaResponseConverter;
 import tapastop.converters.UserRequestConverter;
 import tapastop.model.Tapa;
+import tapastop.model.User;
 import tapastop.reponses.TapaResponse;
 import tapastop.requests.SaveTapaRequest;
 import tapastop.services.TapaService;
@@ -49,6 +50,13 @@ public class TapaController {
     @GetMapping("/tapa/taste/{taste}")
     public ResponseEntity<List<TapaResponse>> findByTaste(@PathVariable String taste) {
         ResponseEntity<List<TapaResponse>> responseEntity = new ResponseEntity<>(tapaService.findByTaste(taste), HttpStatus.OK);
+        return responseEntity;
+    }
+
+
+    @GetMapping("/tapa/rated/{username}")
+    public ResponseEntity<List<TapaResponse>> getTapasByUser(@PathVariable String username){
+        ResponseEntity<List<TapaResponse>> responseEntity = new ResponseEntity <>(tapaService.getTapasByUser(username), HttpStatus.OK);
         return responseEntity;
     }
 

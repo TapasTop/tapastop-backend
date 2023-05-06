@@ -4,11 +4,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import tapastop.dao.TapaDao;
 import tapastop.model.Tapa;
-import tapastop.model.Tapa;
+import tapastop.model.User;
 import tapastop.persistence.TapaPersistence;
 
 import java.util.List;
@@ -46,6 +45,12 @@ public class TapaPersistenceImpl implements TapaPersistence {
     @Override
     public List<Tapa> findByTaste(String taste) {
         List<Tapa> persisted = this.tapaDao.findByTaste(taste);
+        return persisted;
+    }
+
+    @Override
+    public List<Tapa> getTapasByUsers(Long id) {
+        List<Tapa> persisted = tapaDao.getTapasByUsers(id);
         return persisted;
     }
 }
