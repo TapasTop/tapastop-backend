@@ -1,10 +1,10 @@
-/*package tapastop;
+package tapastop;/*package tapastop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TapastopDaoApplicationTests {
+class TapastopCoreApplicationTests {
 
     @Test
     void contextLoads() {

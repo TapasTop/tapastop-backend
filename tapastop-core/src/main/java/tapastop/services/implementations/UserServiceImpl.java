@@ -32,6 +32,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Long id) {
         Optional<User> user = userPersistence.findById(id);
+        if(!user.isPresent()){
+            return null;
+        }
         return user.get();
     }
 
@@ -71,6 +74,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByMail(String mail) {
         Optional<User> user = userPersistence.findByMail(mail);
+        if (!user.isPresent()) {
+            return null;
+        }
         return user.get();
     }
 
@@ -90,6 +96,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         Optional<User> user = this.userPersistence.findByUsername(username);
+        if(!user.isPresent()){
+            return null;
+        }
         return user.get();
     }
 

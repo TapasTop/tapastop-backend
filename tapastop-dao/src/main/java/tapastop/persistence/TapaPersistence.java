@@ -11,4 +11,5 @@ public interface TapaPersistence {
     public Tapa save(Tapa tapa);
     public List<Tapa> findAll();
     public void deleteById(Long id);
+    public List<Tapa> findByTaste(String taste);
 }
