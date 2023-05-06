@@ -17,8 +17,6 @@ import java.util.Optional;
 @Component
 public class TapaPersistenceImpl implements TapaPersistence {
 
-    @PersistenceContext
-    private EntityManager entityManager;
     @Autowired
     private TapaDao tapaDao;
 

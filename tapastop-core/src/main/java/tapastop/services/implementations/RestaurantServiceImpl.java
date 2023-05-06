@@ -21,6 +21,9 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public Restaurant findById(Long id) {
         Optional<Restaurant> restaurant = restaurantPersistence.findById(id);
+        if(!restaurant.isPresent()){
+            return null;
+        }
         return restaurant.get();
     }
 

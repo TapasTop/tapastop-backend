@@ -38,6 +38,9 @@ public class TapaServiceImpl implements TapaService {
     public TapaResponse findById(Long id) {
         TapaResponseConverter tapaResponseConverter = new TapaResponseConverter();
         Optional<Tapa> tapa = tapaPersistence.findById(id);
+        if(!tapa.isPresent()){
+            return null;
+        }
         return tapaResponseConverter.convert(tapa.get());
     }
 

@@ -8,6 +8,6 @@ import tapastop.model.Tapa;
 import java.util.List;
 
 public interface TapaDao extends JpaRepository<Tapa, Long> {
-    @Query("SELECT t FROM Tapa t WHERE t.taste = :taste")
+    @Query(value = "SELECT * FROM tapa t WHERE t.taste = :taste", nativeQuery = true)
     List<Tapa> findByTaste(@Param("taste") String taste);
 }
