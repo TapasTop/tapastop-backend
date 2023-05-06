@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
+import tapastop.exceptions.ExceptionService;
+import tapastop.exceptions.types.BadRequestException;
 import tapastop.model.ConfirmationToken;
 import tapastop.model.User;
 import tapastop.persistence.ConfirmationTokenPersistence;
@@ -34,22 +36,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<String> save(User user) {
+    public User save(User user) {
         if(userPersistence.findByMail(user.getMail()).isPresent()){
-            return ResponseEntity.badRequest().body("Error: Email is already in use");
+            throw new BadRequestException("400", "Mail is already in use.", HttpStatus.BAD_REQUEST);
+        } else if (userPersistence.findByUsername(user.getUsername()).isPresent()) {
+            throw new BadRequestException("400", "Username is already in use.", HttpStatus.BAD_REQUEST);
         }
 
-        userPersistence.save(user);
+        User saveUser = userPersistence.save(user);
 
         ConfirmationToken confirmationToken = new ConfirmationToken(user);
         confirmationTokenPersistence.save(confirmationToken);
 
+
         emailService.sendEmail(user.getMail(), "Confirma tu registro",
                 "Su registro se ha realizado con éxito, ahora solo falta el último paso. Verifica tu " +
-                "cuenta en el siguiente enlace: http://localhost:8080/confirm-account?token=" +
-                confirmationToken.getConfirmationToken());
+                        "cuenta en el siguiente enlace: http://localhost:8080/confirm-account?token=" +
+                        confirmationToken.getConfirmationToken());
 
-        return new ResponseEntity<>("Operation successfully", HttpStatus.OK);
+        return saveUser;
     }
 
     @Override
@@ -76,6 +81,7 @@ public class UserServiceImpl implements UserService {
             User user = userPersistence.findByMail(token.get().getUser().getMail()).get();
             user.setEnabled(true);
             userPersistence.save(user);
+            confirmationTokenPersistence.delete(token.get());
             return ResponseEntity.ok("Email verified successfully");
         }
         return ResponseEntity.badRequest().body("Error: Couldn't verify the email");

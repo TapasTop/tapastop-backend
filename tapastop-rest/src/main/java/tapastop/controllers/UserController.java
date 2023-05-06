@@ -23,11 +23,11 @@ public class UserController {
         return responseEntity;
     }
 
-    @PostMapping("/user")
-    public ResponseEntity<String> saveUser(@RequestBody SaveUserRequest saveUserRequest){
+    @PostMapping("/signup")
+    public ResponseEntity<User> saveUser(@RequestBody SaveUserRequest saveUserRequest){
         UserRequestConverter userRequestConverter = new UserRequestConverter();
         User user = userRequestConverter.convert(saveUserRequest);
-        return   userService.save(user);
+        return new ResponseEntity<>(userService.save(user), HttpStatus.OK);
     }
 
     @GetMapping("/user")

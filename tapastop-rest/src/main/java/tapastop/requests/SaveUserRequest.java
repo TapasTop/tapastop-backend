@@ -12,21 +12,17 @@ public class SaveUserRequest {
     private String name;
     private String surname;
     private String birthdate;
-    private String gender;
-    private String address;
 
     public SaveUserRequest() {
     }
 
-    public SaveUserRequest(String username, String password, String mail, String name, String surname, String birthdate, String gender, String address) {
+    public SaveUserRequest(String username, String password, String mail, String name, String surname, String birthdate) {
         this.username = username;
         this.password = password;
         this.mail = mail;
         this.name = name;
         this.surname = surname;
         this.birthdate = birthdate;
-        this.gender = gender;
-        this.address = address;
     }
 
     public String getUsername() {
@@ -75,21 +71,5 @@ public class SaveUserRequest {
 
     public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 }

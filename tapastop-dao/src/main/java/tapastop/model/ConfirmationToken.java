@@ -19,7 +19,7 @@ public class ConfirmationToken {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private User user;
 
     public ConfirmationToken() {

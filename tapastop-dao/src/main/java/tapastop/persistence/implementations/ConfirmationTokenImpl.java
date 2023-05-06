@@ -26,4 +26,9 @@ public class ConfirmationTokenImpl implements ConfirmationTokenPersistence {
         Optional<ConfirmationToken> persisted = this.confirmationTokenDao.findByConfirmationToken(confirmationToken);
         return persisted;
     }
+
+    @Override
+    public void delete(ConfirmationToken confirmationToken) {
+        this.confirmationTokenDao.delete(confirmationToken);
+    }
 }
