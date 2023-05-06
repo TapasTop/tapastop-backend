@@ -1,5 +1,8 @@
 package tapastop.persistence.implementations;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tapastop.dao.TapaDao;
@@ -12,6 +15,7 @@ import java.util.Optional;
 
 @Component
 public class TapaPersistenceImpl implements TapaPersistence {
+
     @Autowired
     private TapaDao tapaDao;
 
@@ -36,6 +40,12 @@ public class TapaPersistenceImpl implements TapaPersistence {
     @Override
     public void deleteById(Long id) {
         tapaDao.deleteById(id);
+    }
+
+    @Override
+    public List<Tapa> findByTaste(String taste) {
+        List<Tapa> persisted = this.tapaDao.findByTaste(taste);
+        return persisted;
     }
 
     @Override

@@ -9,7 +9,6 @@ import tapastop.dao.TypeDao;
 import tapastop.model.Region;
 import tapastop.model.Tapa;
 import tapastop.model.Type;
-import tapastop.model.User;
 import tapastop.persistence.RegionPersistence;
 import tapastop.persistence.RestaurantPersistence;
 import tapastop.persistence.TapaPersistence;
@@ -21,6 +20,7 @@ import tapastop.services.TapaService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TapaServiceImpl implements TapaService {
@@ -38,6 +38,9 @@ public class TapaServiceImpl implements TapaService {
     public TapaResponse findById(Long id) {
         TapaResponseConverter tapaResponseConverter = new TapaResponseConverter();
         Optional<Tapa> tapa = tapaPersistence.findById(id);
+        if(!tapa.isPresent()){
+            return null;
+        }
         return tapaResponseConverter.convert(tapa.get());
     }
 
@@ -74,6 +77,15 @@ public class TapaServiceImpl implements TapaService {
     @Override
     public void deleteById(Long id) {
         tapaPersistence.deleteById(id);
+    }
+
+    @Override
+    public List<TapaResponse> findByTaste(String taste) {
+        TapaResponseConverter tapaResponseConverter = new TapaResponseConverter();
+        List<Tapa> tapas = tapaPersistence.findByTaste(taste);
+        return tapas.stream()
+                .map(tapaResponseConverter::convert)
+                .collect(Collectors.toList());
     }
 
     @Override

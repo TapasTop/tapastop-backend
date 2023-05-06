@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/tapastop-rest/pom.xml" />
         <option value="$PROJECT_DIR$/tapastop-dao/pom.xml" />
         <option value="$PROJECT_DIR$/tapastop-core/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>

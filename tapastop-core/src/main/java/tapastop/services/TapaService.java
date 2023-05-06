@@ -1,7 +1,6 @@
 package tapastop.services;
 
 import tapastop.model.Tapa;
-import tapastop.model.User;
 import tapastop.reponses.TapaResponse;
 import tapastop.requests.TapaCoreRequest;
 
@@ -13,4 +12,5 @@ public interface TapaService {
     public List<TapaResponse> findAll();
     public void deleteById(Long id);
     public List<TapaResponse> getTapasByUser(Long id);
+    public List<TapaResponse> findByTaste(String taste);
 }
