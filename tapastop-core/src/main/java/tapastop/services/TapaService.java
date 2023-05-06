@@ -11,6 +11,6 @@ public interface TapaService {
     public TapaResponse save(TapaCoreRequest tapa);
     public List<TapaResponse> findAll();
     public void deleteById(Long id);
-    public List<TapaResponse> getTapasByUser(Long id);
+    public List<TapaResponse> getTapasByUser(String username);
     public List<TapaResponse> findByTaste(String taste);
 }

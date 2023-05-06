@@ -14,7 +14,7 @@ public interface TapaDao extends JpaRepository<Tapa, Long> {
     @Query(value = "SELECT * FROM tapa t WHERE t.taste = :taste", nativeQuery = true)
     List<Tapa> findByTaste(@Param("taste") String taste);
 
-    @Query(value = "SELECT t.tapa FROM Rating t INNER JOIN User u ON t.user = u.id WHERE U.id = ?1",  nativeQuery = true)
-    List<Tapa> getTapasByUsers(@RequestParam Long id);
+    @Query(value = "SELECT tapa.* FROM tapa INNER JOIN rating ON tapa.id = rating.tapa_id  WHERE rating.user_id = :user_id",  nativeQuery = true)
+    List<Tapa> getTapasByUsers(@Param("user_id") Long id);
 
 }

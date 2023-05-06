@@ -1,18 +1,16 @@
 package tapastop.services.implementations;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import tapastop.converters.TapaCoreConverter;
 import tapastop.converters.TapaResponseConverter;
-import tapastop.dao.RegionDao;
-import tapastop.dao.TypeDao;
+import tapastop.exceptions.types.BadRequestException;
 import tapastop.model.Region;
 import tapastop.model.Tapa;
 import tapastop.model.Type;
-import tapastop.persistence.RegionPersistence;
-import tapastop.persistence.RestaurantPersistence;
-import tapastop.persistence.TapaPersistence;
-import tapastop.persistence.TypePersistence;
+import tapastop.model.User;
+import tapastop.persistence.*;
 import tapastop.reponses.TapaResponse;
 import tapastop.requests.TapaCoreRequest;
 import tapastop.services.TapaService;
@@ -25,6 +23,8 @@ import java.util.stream.Collectors;
 @Service
 public class TapaServiceImpl implements TapaService {
 
+    @Autowired
+    private UserPersistence userPersistence;
     @Autowired
     private TapaPersistence tapaPersistence;
     @Autowired
@@ -89,7 +89,12 @@ public class TapaServiceImpl implements TapaService {
     }
 
     @Override
-    public List<TapaResponse> getTapasByUser(Long id) {
+    public List<TapaResponse> getTapasByUser(String username) {
+        Optional<User> user = userPersistence.findByUsername(username);
+        if(!user.isPresent()){
+            throw new BadRequestException("400", "User with username " + username + " does not exist", HttpStatus.BAD_REQUEST);
+        }
+        Long id = user.get().getId();
         List<Tapa> tapaList = tapaPersistence.getTapasByUsers(id);
         List<TapaResponse> responseList = new ArrayList<>();
         TapaResponseConverter tapaResponseConverter = new TapaResponseConverter();
