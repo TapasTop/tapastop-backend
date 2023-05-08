@@ -34,8 +34,8 @@ public class TapaResponseConverter implements Converter<Tapa, TapaResponse> {
                 source.getName(),
                 source.getRestaurant().getName(),
                 source.getRestaurant().getId(),
-                regions_list,
                 type_list,
+                regions_list,
                 source.getPicture(),
                 source.getTaste());
         return tapaResponse;

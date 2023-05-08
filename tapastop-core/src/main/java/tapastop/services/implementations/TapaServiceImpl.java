@@ -79,10 +79,20 @@ public class TapaServiceImpl implements TapaService {
         tapaPersistence.deleteById(id);
     }
 
+
     @Override
     public List<TapaResponse> findByTaste(String taste) {
         TapaResponseConverter tapaResponseConverter = new TapaResponseConverter();
         List<Tapa> tapas = tapaPersistence.findByTaste(taste);
+        return tapas.stream()
+                .map(tapaResponseConverter::convert)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TapaResponse> findByRegion(String region) {
+        TapaResponseConverter tapaResponseConverter = new TapaResponseConverter();
+        List<Tapa> tapas = tapaPersistence.findByRegion(region);
         return tapas.stream()
                 .map(tapaResponseConverter::convert)
                 .collect(Collectors.toList());

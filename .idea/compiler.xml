@@ -6,16 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="tapastop-rest" />
         <module name="tapastop-core" />
         <module name="tapastop-dao" />
-        <module name="tapastop-rest" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="tapastop-core" target="17" />
-      <module name="tapastop-dao" target="17" />
-      <module name="tapastop-rest" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

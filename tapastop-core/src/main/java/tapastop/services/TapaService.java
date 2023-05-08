@@ -13,4 +13,7 @@ public interface TapaService {
     public void deleteById(Long id);
     public List<TapaResponse> getTapasByUser(String username);
     public List<TapaResponse> findByTaste(String taste);
+    public List<TapaResponse> findByRegion(String region);
+
+
 }
