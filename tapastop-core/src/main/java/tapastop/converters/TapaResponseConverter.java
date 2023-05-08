@@ -37,7 +37,8 @@ public class TapaResponseConverter implements Converter<Tapa, TapaResponse> {
                 regions_list,
                 type_list,
                 source.getPicture(),
-                source.getTaste());
+                source.getTaste(),
+                source.getDescription());
         return tapaResponse;
     }
 }

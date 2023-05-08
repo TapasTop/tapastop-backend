@@ -18,32 +18,32 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/api/user/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id){
         ResponseEntity<User> responseEntity = new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
         return responseEntity;
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/api/signup")
     public ResponseEntity<User> saveUser(@RequestBody SaveUserRequest saveUserRequest){
         UserRequestConverter userRequestConverter = new UserRequestConverter();
         User user = userRequestConverter.convert(saveUserRequest);
         return new ResponseEntity<>(userService.save(user), HttpStatus.OK);
     }
 
-    @GetMapping("/user")
+    @GetMapping("/api/user")
     public ResponseEntity<List<User>> getAllUsers(){
         ResponseEntity<List<User>> responseEntity = new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
         return responseEntity;
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/api/user/{id}")
     public ResponseEntity<String> deleteUserById(@PathVariable Long id){
         userService.deleteById(id);
         return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
     }
 
-    @GetMapping("/user/mail/{mail}")
+    @GetMapping("/api/user/mail/{mail}")
     public ResponseEntity<User> findUserByMail(@PathVariable String mail){
         ResponseEntity<User> responseEntity = new ResponseEntity<>(userService.findByMail(mail), HttpStatus.OK);
         return responseEntity;

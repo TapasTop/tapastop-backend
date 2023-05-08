@@ -12,8 +12,9 @@ public class TapaResponse {
     private List<String> region_names;
     private String picture;
     private String taste;
+    private String description;
 
-    public TapaResponse(Long id, String name, String restaurant_name, Long restaurant_id, List<String> types_names, List<String> region_names, String picture, String taste) {
+    public TapaResponse(Long id, String name, String restaurant_name, Long restaurant_id, List<String> types_names, List<String> region_names, String picture, String taste, String description) {
         this.id = id;
         this.name = name;
         this.restaurant_name = restaurant_name;
@@ -22,6 +23,7 @@ public class TapaResponse {
         this.region_names = region_names;
         this.picture = picture;
         this.taste = taste;
+        this.description = description;
     }
 
     public Long getId() {
@@ -86,5 +88,13 @@ public class TapaResponse {
 
     public void setTaste(String taste) {
         this.taste = taste;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

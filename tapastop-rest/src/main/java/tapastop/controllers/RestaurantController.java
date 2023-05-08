@@ -11,6 +11,7 @@ import tapastop.services.RestaurantService;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class RestaurantController {
     
     @Autowired
