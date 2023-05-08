@@ -13,5 +13,6 @@ public interface TapaPersistence {
     public List<Tapa> findAll();
     public void deleteById(Long id);
     public List<Tapa> findByTaste(String taste);
+    public List<Tapa> findByRegion(String region);
     public List<Tapa> getTapasByUsers(Long id);
 }

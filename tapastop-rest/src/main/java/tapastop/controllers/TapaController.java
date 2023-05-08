@@ -53,6 +53,11 @@ public class TapaController {
         return responseEntity;
     }
 
+    @GetMapping("/tapa/region/{region}")
+    public ResponseEntity<List<TapaResponse>> findByRegion(@PathVariable String region) {
+        ResponseEntity<List<TapaResponse>> responseEntity = new ResponseEntity<>(tapaService.findByRegion(region), HttpStatus.OK);
+        return responseEntity;
+    }
 
     @GetMapping("/tapa/rated/{username}")
     public ResponseEntity<List<TapaResponse>> getTapasByUser(@PathVariable String username){
